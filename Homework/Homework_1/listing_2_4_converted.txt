@@ -1,0 +1,13 @@
+while(1) {
+    if (PTA->PDIR & MASK(SW1_SHIFT)) {
+        // switch is not pressed, so light only LED 2
+        // PTA->PSOR = MASK(LED2_SHIFT);
+        // PTA->PCOR = MASK(LED1_SHIFT);
+        FGPIO_PSOR_REG(FPTA) = MASK(LED2_SHIFT)
+        FGPIO_PCOR_REG(FPTA) = MASK(LED1_SHIFT)
+    } else {
+        // switch is pressed, so light only LED 1
+        PTA->PSOR = MASK(LED1_SHIFT);
+        PTA->PCOR = MASK(LED2_SHIFT);
+    }
+}
