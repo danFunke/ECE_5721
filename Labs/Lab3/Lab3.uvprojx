@@ -409,6 +409,16 @@
               <FileType>5</FileType>
               <FilePath>.\src\displayLED.h</FilePath>
             </File>
+            <File>
+              <FileName>display7Seg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\display7Seg.c</FilePath>
+            </File>
+            <File>
+              <FileName>display7Seg.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\display7Seg.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -1,5 +1,6 @@
 #include "inputButtons.h"
 #include "displayLED.h"
+#include "display7Seg.h"
 #include "MKL25Z4.h"
 #include <stdint.h>
 
@@ -37,12 +38,12 @@ int main(void)
 {
     input_buttons_init();
     display_LED_init();
+    display_7seg_init();
 
     __enable_irq();
 
     while(1) {
-        // uint8_t button_state = input_buttons_get_state();
         display_LED_update();
-        // display_7seg_update();
+        display_7seg_update();
     }
 }
