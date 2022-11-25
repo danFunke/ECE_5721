@@ -20,6 +20,7 @@ enum seven_segment_displays {
 	SEVEN_SEGMENT_DISPLAY_0,
     SEVEN_SEGMENT_DISPLAY_1,
     SEVEN_SEGMENT_DISPLAY_2,
+    SEVEN_SEGMENT_DISPLAY_3,
 	NUM_SEVEN_SEGMENT_DISPLAYS
 };
 
@@ -37,6 +38,10 @@ void display_init(void);
  */
 void display_write_seven_segment(size_t seven_segment_display_index, uint8_t encoded_bitmap);
 
+/**
+ * @brief Updates the seven-segment displays every 4 ms
+ * 
+ */
 void display_update(void);
 
 #endif /* DISPLAY_H_ */

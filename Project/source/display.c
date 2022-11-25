@@ -7,9 +7,9 @@
  */
 
 #include "display.h"
-
-#include "MKL25Z4.h"
 #include "system_time.h"
+
+#include <MKL25Z4.h>
 
 #define MASK(x) (1ul << (x))
 
@@ -61,11 +61,13 @@ void display_write_seven_segment(size_t seven_segment_display_index, uint8_t enc
 void display_update(void)
 {
     static int display_index = 0;
+
     static uint32_t last_time = 0;
     uint32_t current_time = system_time_get_ms();
-    
     if ((current_time - last_time) > 4) {
+        // Update last time
         last_time = current_time;
+
         // Clear all group enables
         for (int i = 0; i < NUM_SEVEN_SEGMENT_DISPLAYS; ++i) {
             PTB->PSOR |= MASK(i);
@@ -80,6 +82,7 @@ void display_update(void)
         // Write new contents
         PTC-> PSOR |= display_bitmaps[display_index];
 
+        // Update display index
         display_index++;
         display_index %= NUM_SEVEN_SEGMENT_DISPLAYS;
     }

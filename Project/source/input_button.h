@@ -9,8 +9,6 @@
 #ifndef INPUT_BUTTON_H_
 #define INPUT_BUTTON_H_
 
-#include <stdint.h>
-
 enum input_buttons {
     INC_DELTA,
     DEC_DELTA,
@@ -24,13 +22,13 @@ enum input_buttons {
 };
 
 /**
- * @brief 
+ * @brief Initializes GPIO pots for input buttons
  * 
  */
 void input_button_init(void);
 
 /**
- * @brief 
+ * @brief Interrupt handler; Executes when an input button is pressed
  * 
  */
 void PORTD_IRQHandler(void);

@@ -7,10 +7,10 @@
  */
 
 #include "input_button.h"
-
-#include <MKL25Z4.h>
-
 #include "waveform_generator.h"
+
+#include <stdint.h>
+#include <MKL25Z4.h>
 
 #define MASK(x) (1ul << (x))
 
