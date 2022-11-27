@@ -12,13 +12,16 @@
 #include "SysTick.h"
 
 #include <stdint.h>
+#include <MKL25Z4.h>
+#include <math.h>
 
 // Define constants
-#define DAC_UPDATE_INTERVAL (3)
+#define DAC_UPDATE_INTERVAL (5)
 #define MIN_AMPLITUDE       (0)
 #define MAX_AMPLITUDE       (9)
 
-const double pi = 3.141592;
+static const double pi = 3.14159;
+static const double twoPi = 2 * 3.14159;
 
 static int component_waveform_freqs[NUM_COMPONENT_WAVES] = {
     [DELTA_WAVE] = 4,
@@ -94,17 +97,24 @@ int waveform_generator_get_amplitude(int waveform_index)
 
 void waveform_generator_update(void)
 {
+	
     static uint32_t last_time = 0;
     uint32_t current_time = system_time_get_ms();
+	
     if ((current_time - last_time) >= DAC_UPDATE_INTERVAL) {
         // Reset wave value
-        double wave_value = 0;
-        for (int i = 0; i < NUM_COMPONENT_WAVES; ++i) {
-            wave_value = wave_value + (component_waveform_amps[i] * sin(2 * pi * component_waveform_freqs[i]));
-        }
+        //double wave_value = 0;
+        //for (int i = 0; i < NUM_COMPONENT_WAVES; ++i) {
+				//	wave_value = wave_value + (component_waveform_amps[i] * sin(2 * pi * component_waveform_freqs[i] * (wave_time / 1000)));
+					//wave_value = wave_value + 1;
+				//}
+			float wave_value = sin(twoPi * (wave_time / 1000));
 
         // Update DAC value
         //TODO: fill this part in
     }
+	
+	
+	//float wave_value = sin(twoPi * (wave_time / 1000));
 
 }

@@ -6,9 +6,11 @@
  * 
  */
 
+#include "system_clock.h"
+
 #include <MKL25Z4.h>
 
-static void system_clock_init(void)
+void system_clock_init(void)
 {
     // Select PLL/FLL as clock source and select internal reference clock as source
     MCG->C1 |= (MCG_C1_CLKS(0) | MCG_C1_IREFS(1));

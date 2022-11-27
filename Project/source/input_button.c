@@ -45,42 +45,42 @@ void PORTD_IRQHandler(void)
 {
     // If input button 0 is pressed
     if (PORTD->ISFR & MASK(INC_DELTA)) {
-        waveform_generator_increment_amplitude(DELTA);
+        waveform_generator_increment_amplitude(DELTA_WAVE);
     }
 
     // If input button 1 is pressed
     if (PORTD->ISFR & MASK(DEC_DELTA)) {
-        waveform_generator_decrement_amplitude(DELTA);
+        waveform_generator_decrement_amplitude(DELTA_WAVE);
     }
 
     // If input button 2 is pressed
     if (PORTD->ISFR & MASK(INC_THETA)) {
-        waveform_generator_increment_amplitude(THETA);
+        waveform_generator_increment_amplitude(THETA_WAVE);
     }
 
     // If input button 3 is pressed
     if (PORTD->ISFR & MASK(DEC_THETA)) {
-        waveform_generator_decrement_amplitude(THETA);
+        waveform_generator_decrement_amplitude(THETA_WAVE);
     }
 
     // If input button 4 is pressed
     if (PORTD->ISFR & MASK(INC_ALPHA)) {
-        waveform_generator_increment_amplitude(ALPHA);
+        waveform_generator_increment_amplitude(ALPHA_WAVE);
     }
 
     // If input button 5 is pressed
     if (PORTD->ISFR & MASK(DEC_ALPHA)) {
-        waveform_generator_decrement_amplitude(ALPHA);
+        waveform_generator_decrement_amplitude(ALPHA_WAVE);
     }
 
     // If input button 7 is pressed
     if (PORTD->ISFR & MASK(INC_BETA)) {
-        waveform_generator_increment_amplitude(BETA);
+        waveform_generator_increment_amplitude(BETA_WAVE);
     }
 
     // If input button 7 is pressed
     if (PORTD->ISFR & MASK(DEC_BETA)) {
-        waveform_generator_decrement_amplitude(BETA);
+        waveform_generator_decrement_amplitude(BETA_WAVE);
     }
 
     // Clear status flags

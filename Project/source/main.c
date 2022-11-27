@@ -1,11 +1,13 @@
 #include "system_clock.h"
 
+#include "system_clock.h"
 #include "system_time.h"
 #include "SysTick.h"
 #include "display.h"
 #include "seven_segment_display_encode.h"
 #include "waveform_generator.h"
 #include "input_button.h"
+#include "user_interface.h"
 
 #include <stdint.h>
 
@@ -19,7 +21,7 @@ int main(void)
     input_button_init();
 
     while(1) {
-        waveform_generator_update();
+        //waveform_generator_update();
         display_update();
         user_interface_update();
     }
