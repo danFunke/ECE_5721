@@ -21,7 +21,7 @@ int main(void)
     input_button_init();
 
     while(1) {
-        //waveform_generator_update();
+        waveform_generator_update();
         display_update();
         user_interface_update();
     }
