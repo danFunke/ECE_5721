@@ -17,7 +17,7 @@
 #include <MKL25Z4.h>
 
 // Define constants
-#define DAC_UPDATE_INTERVAL (5)
+#define DAC_UPDATE_INTERVAL (4)
 #define MIN_AMPLITUDE       (0)
 #define MAX_AMPLITUDE       (9)
 #define DAC_POS             (30)
@@ -38,6 +38,7 @@ static void wave_time_update(event_t *evt, void *ctx)
 {
     (void)evt;
     (void)ctx;
+
 
     wave_time++;
     wave_time %= wave_period;
@@ -98,7 +99,7 @@ int waveform_generator_get_amplitude(int waveform_index)
 
 void waveform_generator_update(void)
 {
-	
+    static int lut_table_index = 0;
     static uint32_t last_time = 0;
     uint32_t current_time = system_time_get_ms();
 	
@@ -109,12 +110,16 @@ void waveform_generator_update(void)
         // Construct composite wave signal
         // Scale output signal by user input amplitudes; each component waveform has max amplitude of 0.4 V
         for (int i = 0; i < NUM_COMPONENT_WAVES; ++i) {
-            wave_value = wave_value + (((component_waveform_amps[i] + 1) * 0.4) * sin_tables_get_value(i, wave_time));
+            wave_value = wave_value + (((component_waveform_amps[i] + 1) * 0.4) * sin_tables_get_value(i, lut_table_index));
         }
 
         // Update DAC value
         uint16_t dac_value = (wave_value * 1241) - 1; // NOTE: 1241 = 4096 / 3.3
         DAC0->DAT[0].DATL = DAC_DATL_DATA0(dac_value);
         DAC0->DAT[0].DATH = DAC_DATH_DATA1(dac_value >> 8);
+
+        // Update table index
+        lut_table_index++;
+        lut_table_index %= wave_period;
     }
 }
