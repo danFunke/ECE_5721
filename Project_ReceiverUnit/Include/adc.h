@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define ADC_POS 20
-#define DFT_SAMPLES 125				//number of samples in the DFT
+#define DFT_SAMPLES 250				//number of samples in the DFT
 
 void adc_init(void);
 

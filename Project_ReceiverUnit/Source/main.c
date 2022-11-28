@@ -37,11 +37,24 @@ typedef enum
 
 volatile uint8_t m_calculate_dft = 0u;
 
-static uint16_t adc_samples[DFT_SAMPLES] = { 0x00u };
-static float x[DFT_SAMPLES]       = { 0x00u };
-static float Xre[DFT_SAMPLES]     = { 0x00u };
-static float Xim[DFT_SAMPLES]     = { 0x00u };
-static float P[DFT_SAMPLES]       = { 0x00u };
+static uint16_t adc_samples[DFT_SAMPLES]    = { 0x00u };
+static float x[DFT_SAMPLES]                 = { 0x00u };
+static float Xre[(DFT_SAMPLES / 2) + 1]     = { 0x00u };
+static float Xim[(DFT_SAMPLES / 2) + 1]     = { 0x00u };
+static float P[(DFT_SAMPLES / 2) + 1]       = { 0x00u };
+
+static const int to_sin = 3*DFT_SAMPLES/4;
+
+static const float W[64] = {
+     1.00000f, 0.99518f, 0.98079f, 0.95694f, 0.92388f, 0.88192f, 0.83147f, 0.77301f,
+     0.70711f, 0.63439f, 0.55557f, 0.47139f, 0.38268f, 0.29028f, 0.19509f, 0.09801f,
+    -0.00000f,-0.09802f,-0.19509f,-0.29029f,-0.38269f,-0.47140f,-0.55557f,-0.63440f,
+    -0.70711f,-0.77301f,-0.83147f,-0.88192f,-0.92388f,-0.95694f,-0.98079f,-0.99519f,
+    -1.00000f,-0.99518f,-0.98078f,-0.95694f,-0.92388f,-0.88192f,-0.83146f,-0.77300f,
+    -0.70710f,-0.63439f,-0.55556f,-0.47139f,-0.38267f,-0.29027f,-0.19508f,-0.09801f,
+     0.00001f, 0.09803f, 0.19510f, 0.29030f, 0.38269f, 0.47141f, 0.55558f, 0.63440f,
+     0.70712f, 0.77302f, 0.83148f, 0.88193f, 0.92388f, 0.95694f, 0.98079f, 0.99519f
+};
 
 static void gpio_init(void)
 {
@@ -88,24 +101,22 @@ static void simple_dft(void)
     uint8_t k = 0; //frequency domain index
     uint8_t n = 0; //time domain index
 
-    for (k = 0 ; k < DFT_SAMPLES ; ++k)
+    int a, b;
+
+    for (k=0 ; k<=DFT_SAMPLES/2 ; ++k)
     {
-        // Real part of X[k]
-        Xre[k] = 0;
-        for (n = 0 ; n < DFT_SAMPLES ; ++n) 
+        Xre[k] = 0; Xim[k] = 0;
+        a = 0; 
+				b = to_sin;
+
+        for (n=0 ; n<DFT_SAMPLES ; ++n)
         {
-            Xre[k] += x[n] * cos(n * k * PI2 / DFT_SAMPLES);
+            Xre[k] += x[n] * W[a%DFT_SAMPLES];
+            Xim[k] -= x[n] * W[b%DFT_SAMPLES];
+            a += k; b += k;
         }
-
-        // Imaginary part of X[k]
-        Xim[k] = 0;
-        for (n = 0 ; n < DFT_SAMPLES ; ++n)
-        {
-            Xim[k] -= x[n] * sin(n * k * PI2 / DFT_SAMPLES);
-        } 
-
-        // Power at kth frequency bin
-        P[k] = Xre[k] * Xre[k] + Xim[k] * Xim[k];
+        
+        P[k] = Xre[k]*Xre[k] + Xim[k]*Xim[k];
     }
 }
 
