@@ -26,28 +26,100 @@ Project File Date:  11/26/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.18', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
-Build target 'Target 1'
-Source/adc.c(5): warning: // comments are not allowed in this language [-Wcomment]
-#define SAMPLING_TIME (84000) //4 ms interrupts
-                              ^
-Source/adc.c(46): warning: no previous prototype for function 'SysTick_Handler' [-Wmissing-prototypes]
-void SysTick_Handler(void)
+Rebuild target 'Target 1'
+compiling system_MKL25Z4.c...
+assembling startup_MKL25Z4.s...
+Source/dma.c(6): warning: no previous extern declaration for non-static variable 'dma_count' [-Wmissing-variable-declarations]
+volatile uint16_t dma_count = 0u;
+                  ^
+Source/dma.c(6): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile uint16_t dma_count = 0u;
+         ^
+Source/dma.c(10): warning: // comments are not allowed in this language [-Wcomment]
+    //enable clock to DMA
+    ^
+Source/dma.c(47): warning: no previous prototype for function 'DMA0_IRQHandler' [-Wmissing-prototypes]
+void DMA0_IRQHandler(void)
      ^
-Source/adc.c(46): note: declare 'static' if the function is not intended to be used outside of this translation unit
-void SysTick_Handler(void)
+Source/dma.c(47): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void DMA0_IRQHandler(void)
 ^
 static 
-Source/adc.c(7): warning: no previous extern declaration for non-static variable 'n' [-Wmissing-variable-declarations]
-volatile float n;
-               ^
-Source/adc.c(7): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-volatile float n;
-         ^
 3 warnings generated.
+compiling dma.c...
+Source/main.c(6): warning: In file included from...
+Include\adc.h(7): warning: // comments are not allowed in this language [-Wcomment]
+#define DFT_SAMPLES 125                         //number of samples in the DFT
+                                                ^
+Source/main.c(15): warning: // comments are not allowed in this language [-Wcomment]
+#define DELTA_LED   (5) //PTD5
+                        ^
+Source/main.c(38): warning: no previous extern declaration for non-static variable 'm_calculate_dft' [-Wmissing-variable-declarations]
+volatile uint8_t m_calculate_dft = 0u;
+                 ^
+Source/main.c(38): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+volatile uint8_t m_calculate_dft = 0u;
+         ^
+Source/main.c(73): warning: expression result unused [-Wunused-value]
+    for (i; i < DFT_SAMPLES; i++)
+         ^
+Source/main.c(97): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            Xre[k] += x[n] * cos(n * k * PI2 / DFT_SAMPLES);
+                      ^~~~ ~
+Source/main.c(97): warning: implicit conversion when assigning computation result loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            Xre[k] += x[n] * cos(n * k * PI2 / DFT_SAMPLES);
+                   ~~ ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Source/main.c(104): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            Xim[k] -= x[n] * sin(n * k * PI2 / DFT_SAMPLES);
+                      ^~~~ ~
+Source/main.c(104): warning: implicit conversion when assigning computation result loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            Xim[k] -= x[n] * sin(n * k * PI2 / DFT_SAMPLES);
+                   ~~ ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Source/main.c(121): warning: expression result unused [-Wunused-value]
+    for (k; k <= DELTA_INDEX; k++)
+         ^
+Source/main.c(125): warning: expression result unused [-Wunused-value]
+    for (k; k <= THETA_INDEX; k++)
+         ^
+Source/main.c(129): warning: expression result unused [-Wunused-value]
+    for (k; k <= ALPHA_INDEX; k++)
+         ^
+Source/main.c(133): warning: expression result unused [-Wunused-value]
+    for (k; k <= BETA_INDEX; k++)
+         ^
+Source/main.c(137): warning: expression result unused [-Wunused-value]
+    for (k; k <= INV_INDEX; k++)
+         ^
+Source/main.c(187): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+        default:
+        ^
+Source/main.c(206): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    float adc_res = pow(2, 16);
+          ~~~~~~~   ^~~~~~~~~~
+15 warnings generated.
+compiling main.c...
+Source/adc.c(1): warning: In file included from...
+Include\adc.h(7): warning: // comments are not allowed in this language [-Wcomment]
+#define DFT_SAMPLES 125                         //number of samples in the DFT
+                                                ^
+Source/adc.c(6): warning: // comments are not allowed in this language [-Wcomment]
+#define SAMPLING_TIME (84000) //4 ms interrupts
+                              ^
+Source/adc.c(83): warning: implicitly declaring library function 'memcpy' with type 'void *(void *, const void *, unsigned int)' [-Wimplicit-function-declaration]
+    memcpy(dest, temp_samples, DFT_SAMPLES);
+    ^
+Source/adc.c(83): note: include the header <string.h> or explicitly provide a declaration for 'memcpy'
+Source/adc.c(10): warning: no previous extern declaration for non-static variable 'temp_samples' [-Wmissing-variable-declarations]
+uint16_t temp_samples[DFT_SAMPLES];
+         ^
+Source/adc.c(10): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint16_t temp_samples[DFT_SAMPLES];
+^
+4 warnings generated.
 compiling adc.c...
 linking...
-Program Size: Code=1248 RO-data=208 RW-data=0 ZI-data=360  
-".\Objects\ReceiverUnit.axf" - 0 Error(s), 3 Warning(s).
+Program Size: Code=11928 RO-data=840 RW-data=0 ZI-data=2864  
+".\Objects\ReceiverUnit.axf" - 0 Error(s), 22 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -74,10 +146,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: Keil::Device:Startup:2.5.0
+      Source file:   Device/Source/system_MKL25Z4.c
       Source file:   Device/Source/ARM/startup_MKL25Z4.s
       Include file:  Device/Source/system_MKL25Z4.h
-      Source file:   Device/Source/system_MKL25Z4.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

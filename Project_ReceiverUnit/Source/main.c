@@ -9,8 +9,8 @@
 
 #define MASK(x)			 (1UL << (x))
 
-#define DFT_SAMPLES 125				//number of samples in the DFT
 #define PI2 6.2832
+#define VREF 3.3f
 
 #define DELTA_LED   (5) //PTD5
 #define THETA_LED   (0) //PTD0
@@ -34,12 +34,14 @@ typedef enum
 
 } freq_band_t;
 
-static uint8_t m_calculate_dft = 0u;
 
-static float x[DFT_SAMPLES]   = { 0x00u };
-static float Xre[DFT_SAMPLES] = { 0x00u };
-static float Xim[DFT_SAMPLES] = { 0x00u };
-static float P[DFT_SAMPLES]   = { 0x00u };
+volatile uint8_t m_calculate_dft = 0u;
+
+static uint16_t adc_samples[DFT_SAMPLES] = { 0x00u };
+static float x[DFT_SAMPLES]       = { 0x00u };
+static float Xre[DFT_SAMPLES]     = { 0x00u };
+static float Xim[DFT_SAMPLES]     = { 0x00u };
+static float P[DFT_SAMPLES]       = { 0x00u };
 
 static void gpio_init(void)
 {
@@ -62,6 +64,23 @@ static void gpio_init(void)
 	PTD->PDDR |= MASK(ALPHA_LED);
 	PTD->PDDR |= MASK(BETA_LED);
     PTD->PDDR |= MASK(INV_LED);
+}
+
+static void samples_conversion(float adc_res)
+{
+    uint8_t i = 0;
+
+    for (i; i < DFT_SAMPLES; i++)
+    {
+        float temp = 0.0f;
+    
+        //transfer function
+        temp = (float)adc_samples[i] - 0.5f;
+        temp /= adc_res;
+        temp *= VREF;
+
+        x[i] = temp;
+    }
 }
 
 static void simple_dft(void)
@@ -176,13 +195,15 @@ static void initialization(void)
 {
     adc_init();
     systick_init();
-    dma_init();
+    // dma_init(adc_samples);
     gpio_init();
 }
 
 int main(void)
 {
-    freq_band_t max_band = INV_BAND;
+    freq_band_t max_band = DELTA_BAND;
+	
+    float adc_res = pow(2, 16);
 
     initialization();
 
@@ -190,10 +211,11 @@ int main(void)
     {
         if (m_calculate_dft == 0x01) //this means that there are new samples and the power needs to be calculated
         {
+				    m_calculate_dft = 0x00;
+            retrieve_samples(adc_samples);
+            samples_conversion(adc_res);
             simple_dft(); 
             power_comparison(&max_band); 
-
-            m_calculate_dft = 0x00;
         }
 
         output_leds(max_band); //TODO add minor delay?

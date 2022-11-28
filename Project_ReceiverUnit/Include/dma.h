@@ -1,6 +1,10 @@
 #ifndef DMA_H
 #define DMA_H
 
-void dma_init(void);
+#include <stdint.h>
+
+
+
+void dma_init(uint16_t* dest);
 
 #endif
