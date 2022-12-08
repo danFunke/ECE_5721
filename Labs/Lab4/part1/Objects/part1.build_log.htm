@@ -1,0 +1,247 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Daniel Funke, Oakland University, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.37.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.18
+Assembler:       Armasm.exe V6.18
+Linker/Locator:  ArmLink.exe V6.18
+Library Manager: ArmAr.exe V6.18
+Hex Converter:   FromElf.exe V6.18
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DARMCM1.DLL V1.19.6.0
+Target DLL:      CMSIS_AGDI.dll V1.33.12.0
+Dialog DLL:      TARMCM1.DLL V1.14.6.0
+ 
+<h2>Project:</h2>
+E:\School\Fall2022\ECE_5721\Labs\Lab4\part1\part1.uvprojx
+Project File Date:  12/04/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.18', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+adc.c(33): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    static const float A1 = 3.354016e-03;
+                       ~~   ^~~~~~~~~~~~
+adc.c(34): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    static const float B1 = 3.349290e-04;
+                       ~~   ^~~~~~~~~~~~
+adc.c(35): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    static const float C1 = 3.683843e-06;
+                       ~~   ^~~~~~~~~~~~
+adc.c(36): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    static const float D1 = 7.050455e-07;
+                       ~~   ^~~~~~~~~~~~
+adc.c(51): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    float r_therm = r_bal * ((65535.0 / n) - 1);
+          ~~~~~~~   ~~~~~~^~~~~~~~~~~~~~~~~~~~~
+adc.c(51): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+    float r_therm = r_bal * ((65535.0 / n) - 1);
+                                      ~ ^
+adc.c(51): warning: implicit conversion increases floating-point precision: 'const float' to 'double' [-Wdouble-promotion]
+    float r_therm = r_bal * ((65535.0 / n) - 1);
+                    ^~~~~ ~
+adc.c(57): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+            (C1 * (log(r_therm/r_ref) * log(r_therm/r_ref))) + 
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+adc.c(58): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (D1 * (log(r_therm/r_ref) * log(r_therm/r_ref) * log(r_therm/r_ref)));
+                                                             ~~~ ~~~~~~~^~~~~~
+adc.c(58): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (D1 * (log(r_therm/r_ref) * log(r_therm/r_ref) * log(r_therm/r_ref)));
+                                        ~~~ ~~~~~~~^~~~~~
+adc.c(58): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (D1 * (log(r_therm/r_ref) * log(r_therm/r_ref) * log(r_therm/r_ref)));
+                   ~~~ ~~~~~~~^~~~~~
+adc.c(58): warning: implicit conversion increases floating-point precision: 'const float' to 'double' [-Wdouble-promotion]
+            (D1 * (log(r_therm/r_ref) * log(r_therm/r_ref) * log(r_therm/r_ref)));
+             ^~ ~
+adc.c(57): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (C1 * (log(r_therm/r_ref) * log(r_therm/r_ref))) + 
+                                        ~~~ ~~~~~~~^~~~~~
+adc.c(57): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (C1 * (log(r_therm/r_ref) * log(r_therm/r_ref))) + 
+                   ~~~ ~~~~~~~^~~~~~
+adc.c(57): warning: implicit conversion increases floating-point precision: 'const float' to 'double' [-Wdouble-promotion]
+            (C1 * (log(r_therm/r_ref) * log(r_therm/r_ref))) + 
+             ^~ ~
+adc.c(56): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+            (B1 * (log(r_therm/r_ref))) + 
+                   ~~~ ~~~~~~~^~~~~~
+adc.c(56): warning: implicit conversion increases floating-point precision: 'const float' to 'double' [-Wdouble-promotion]
+            (B1 * (log(r_therm/r_ref))) + 
+             ^~ ~
+adc.c(55): warning: implicit conversion increases floating-point precision: 'const float' to 'double' [-Wdouble-promotion]
+    temp =   A1 + 
+             ^~ ~
+adc.c(49): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    float n = (float)ADC0->R[0];
+          ^
+19 warnings generated.
+compiling adc.c...
+compiling system_MKL25Z4.c...
+event.c(9): warning: In file included from...
+./event.h(13): warning: In file included from...
+./list.h(201): warning: no newline at end of file [-Wnewline-eof]
+#endif /* LIST_H_ */
+                    ^
+event.c(9): warning: In file included from...
+./event.h(117): warning: no newline at end of file [-Wnewline-eof]
+#endif /* EVENT_H_ */
+                     ^
+./event.h(27): warning: padding size of 'struct event_handler' with 3 bytes to alignment boundary [-Wpadded]
+typedef struct event_handler {
+               ^
+event.c(133): warning: cast from 'char *' to 'event_handler_t *' (aka 'struct event_handler *') increases required alignment from 1 to 4 [-Wcast-align]
+        event_handler_t *handler = (event_handler_t *)((char*)element - offsetof(event_handler_t, element));
+                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+event.c(126): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    list_iterator_t iter;
+                    ^
+5 warnings generated.
+compiling event.c...
+assembling startup_MKL25Z4.s...
+compiling display.c...
+main.c(2): warning: In file included from...
+./seven_segment_display_encode.h(38): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SEVEN_SEGMENT_DISPLAY_ENCODE_H_ */
+                                            ^
+main.c(3): warning: In file included from...
+./seven_segment_display.h(12): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SEVEN_SEGMENT_DISPLAY_H_ */
+                                     ^
+main.c(14): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    float temp;
+          ^
+3 warnings generated.
+compiling main.c...
+system_clock.c(9): warning: In file included from...
+./system_clock.h(19): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SYSTEM_CLOCK_H */
+                           ^
+1 warning generated.
+compiling system_clock.c...
+seven_segment_display_encode.c(9): warning: In file included from...
+./seven_segment_display_encode.h(38): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SEVEN_SEGMENT_DISPLAY_ENCODE_H_ */
+                                            ^
+seven_segment_display_encode.c(34): warning: extra ';' outside of a function [-Wextra-semi]
+};
+ ^
+seven_segment_display_encode.c(75): warning: extra ';' outside of a function [-Wextra-semi]
+};
+ ^
+seven_segment_display_encode.c(116): warning: extra ';' outside of a function [-Wextra-semi]
+};
+ ^
+seven_segment_display_encode.c(176): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+5 warnings generated.
+compiling seven_segment_display_encode.c...
+list.c(9): warning: In file included from...
+./list.h(201): warning: no newline at end of file [-Wnewline-eof]
+#endif /* LIST_H_ */
+                    ^
+list.c(154): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    bool does_contain;
+         ^
+list.c(173): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    list_iterator_t iter;
+                    ^
+list.c(195): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+    list_iterator_t iter;
+                    ^
+list.c(262): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+5 warnings generated.
+compiling list.c...
+SysTick.c(9): warning: In file included from...
+./SysTick.h(12): warning: In file included from...
+./event.h(13): warning: In file included from...
+./list.h(201): warning: no newline at end of file [-Wnewline-eof]
+#endif /* LIST_H_ */
+                    ^
+SysTick.c(9): warning: In file included from...
+./SysTick.h(12): warning: In file included from...
+./event.h(117): warning: no newline at end of file [-Wnewline-eof]
+#endif /* EVENT_H_ */
+                     ^
+SysTick.c(9): warning: In file included from...
+./SysTick.h(29): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SYS_TICK_H_ */
+                        ^
+3 warnings generated.
+compiling SysTick.c...
+system_time.c(10): warning: In file included from...
+./event.h(13): warning: In file included from...
+./list.h(201): warning: no newline at end of file [-Wnewline-eof]
+#endif /* LIST_H_ */
+                    ^
+system_time.c(10): warning: In file included from...
+./event.h(117): warning: no newline at end of file [-Wnewline-eof]
+#endif /* EVENT_H_ */
+                     ^
+system_time.c(11): warning: In file included from...
+./SysTick.h(29): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SYS_TICK_H_ */
+                        ^
+system_time.c(10): warning: In file included from...
+./event.h(27): warning: padding size of 'struct event_handler' with 3 bytes to alignment boundary [-Wpadded]
+typedef struct event_handler {
+               ^
+4 warnings generated.
+compiling system_time.c...
+seven_segment_display.c(1): warning: In file included from...
+./seven_segment_display.h(12): warning: no newline at end of file [-Wnewline-eof]
+#endif /* SEVEN_SEGMENT_DISPLAY_H_ */
+                                     ^
+seven_segment_display.c(58): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+2 warnings generated.
+compiling seven_segment_display.c...
+linking...
+Program Size: Code=14456 RO-data=1044 RW-data=72 ZI-data=360  
+".\Objects\part1.axf" - 0 Error(s), 47 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
+                ARM.CMSIS.5.9.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.6.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.Kinetis_KLxx_DFP.1.15.0.pack
+                Keil.Kinetis_KLxx_DFP.1.15.0
+                NXP Kinetis KLxx Series Device Support and Examples
+   * Component: Startup Version: 2.5.0
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/Device/MKL25Z128xxx4
+  ./RTE/_Target_1
+  C:/Users/Dan/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/Dan/AppData/Local/Arm/Packs/Keil/Kinetis_KLxx_DFP/1.15.0/Device/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.6.0
+
+   * Component: Keil::Device:Startup:2.5.0
+      Source file:   Device/Source/system_MKL25Z4.c
+      Include file:  Device/Source/system_MKL25Z4.h
+      Source file:   Device/Source/ARM/startup_MKL25Z4.s
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
